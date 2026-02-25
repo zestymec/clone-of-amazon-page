@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.y-axis {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.x-axis {
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+header {
+    background-color: #131921;
+}
+
+.amazon-logo {
+    width: 110px;
+    height: 46px;
+    padding: 0;
+}
+
+.logo :hover {
+    border: 1px solid white;
+}
+
+.header-bar {
+    display: flex;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+}
+
+.select-search {
+    width: 45px;
+    height: 40px;
+    field-sizing: content;
+    width: auto;
+    border-radius: 5px 0 0 5px;
+    background-color: rgb(205, 202, 202);
+}
+
+.border-none {
+    border: none;
+}
+
+.search-btn {
+    width: 45px;
+    height: 40px;
+    border-radius: 0 5px 5px 0;
+    background-color: rgb(233, 179, 79);
+}
+
+.search-bar {
+    height: 40px;
+    outline: none;
+    width: 50%;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.search-input:hover {
+    outline: none;
+    border-color: inherit;
+}
+
+.select-search:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.select-search:hover {
+    outline: none;
+    border-color: inherit;
+}
