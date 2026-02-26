@@ -14,23 +14,80 @@ body {
     margin-bottom: auto;
 
 }
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    display: flex;
+    flex-direction: row ;
+}
 
 header {
     background-color: #131921;
 }
 
-.amazon-logo {
-    width: 110px;
-    height: 46px;
-    padding: 0;
+.header-bar {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    justify-content: space-between;
 }
 
-.logo :hover {
-    border: 1px solid white;
+.logo {
+    display: flex;
+    justify-content: center;
+    /* horizontal center */
+    align-items: center;
+    border: 1px solid #131921;
+}
+
+.amazon-logo {
+    width: 114px;
+    height: 46px;
+
+}
+
+.logo:hover {
+    border-color: white;
 }
 
 .header-bar {
     display: flex;
+}
+
+.delivery-to {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.delivery-loc {
+    display: flex;
+    align-items: center;
+}
+
+.delivery-section {
+    border: 1px solid #131921;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.delivery-section:hover {
+    border-color: white;
+}
+
+.delivery-section p,
+.delivery-section h3 {
+    margin: 0;
+}
+
+.delivery-section h3 {
+    margin-left: 2px;
 }
 
 .search-bar {
@@ -59,10 +116,9 @@ header {
     background-color: rgb(233, 179, 79);
 }
 
-.search-bar {
-    height: 40px;
+.search-input {
     outline: none;
-    width: 50%;
+    width: 50vw;
 }
 
 .search-input:focus {
@@ -84,3 +140,169 @@ header {
     outline: none;
     border-color: inherit;
 }
+
+.usimg {
+    width: 20px;
+    height: 20px;
+}
+
+.language-section {
+    border: 1px solid #131921;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+
+}
+
+.language-section:hover {
+    border-color: white;
+}
+
+.EN {
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.dropdown {
+    width: 10px;
+    height: 10px;
+}
+
+.language-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    width: 260px;
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 100;
+}
+
+
+.language-section:hover .lang-dropdown {
+    display: block;
+}
+
+.lang-dropdown label {
+    display: block;
+    margin: 3px 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.lang-dropdown input {
+    margin-right: 6px;
+    accent-color: orange;
+}
+
+.lang-dropdown .title {
+    font-weight: bold;
+}
+
+.lang-dropdown .seeall {
+    margin-top: 0;
+    color: rgb(67, 67, 208);
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.amazon-com {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.lang-dropdown .region {
+    margin-top: 0;
+    color: rgb(67, 67, 208);
+    margin-bottom: 6px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.signin-section {
+    border: 1px solid #131921;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3px;
+    position: relative;
+}
+
+.signin-section:hover {
+    border-color: white;
+}
+
+.signin-section p,
+.signin-section div h4 {
+    margin: 0;
+}
+
+.signin-section div {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.signin {
+    color: white;
+    margin-bottom: 2px;
+}
+
+.signin-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    width: 30vw;
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* visibility: hidden; */
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+
+.signin-section:hover .signin-dropdown {
+    visibility: visible;
+}
+
+.signin-dropdown button {
+    width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: orange;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.start-here {
+    
+    text-decoration: underline;
+    color: rgb(30, 87, 133);
+}
+.signin-dropdown .newcustomer{
+    margin-top: 20px;
+}
+
+  
