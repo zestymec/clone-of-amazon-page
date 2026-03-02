@@ -4,6 +4,31 @@ body {
     overflow: hidden;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* .content{
+    
+} */
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
 .y-axis {
     margin-top: auto;
     margin-bottom: auto;
@@ -12,15 +37,16 @@ body {
 .x-axis {
     margin-top: auto;
     margin-bottom: auto;
-
 }
-.col{
+
+.col {
     display: flex;
     flex-direction: column;
 }
-.row{
+
+.row {
     display: flex;
-    flex-direction: row ;
+    flex-direction: row;
 }
 
 header {
@@ -30,13 +56,14 @@ header {
 .header-bar {
     padding-top: 4px;
     padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
     justify-content: space-between;
 }
 
 .logo {
     display: flex;
     justify-content: center;
-    /* horizontal center */
     align-items: center;
     border: 1px solid #131921;
 }
@@ -44,7 +71,10 @@ header {
 .amazon-logo {
     width: 114px;
     height: 46px;
+}
 
+.deliver-div p {
+    margin-right: 3px;
 }
 
 .logo:hover {
@@ -55,11 +85,18 @@ header {
     display: flex;
 }
 
+
 .delivery-to {
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    font-weight: bold;
+
+}
+
+.deliver-div {
+    align-items: center;
 }
 
 .delivery-loc {
@@ -180,7 +217,7 @@ header {
 
 .lang-dropdown {
     position: absolute;
-    top: 55px;
+    top: 40px;
     left: 0px;
     width: 260px;
     background: white;
@@ -238,21 +275,22 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
     padding: 3px;
     position: relative;
+    padding-top: auto;
+    padding-bottom: auto;
 }
 
 .signin-section:hover {
     border-color: white;
 }
 
-.signin-section p,
-.signin-section div h4 {
+.signin,
+.Account-list {
     margin: 0;
 }
 
-.signin-section div {
+.signin-section .newcustomer {
     display: flex;
     align-items: center;
     gap: 3px;
@@ -272,7 +310,7 @@ header {
     padding: 15px;
     border-radius: 6px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* visibility: hidden; */
+    visibility: hidden;
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -297,12 +335,250 @@ header {
 }
 
 .start-here {
-    
+
     text-decoration: underline;
     color: rgb(30, 87, 133);
 }
-.signin-dropdown .newcustomer{
+
+.signin-dropdown .newcustomer {
     margin-top: 20px;
 }
 
-  
+.yourlist.row {
+    display: flex;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+
+.yourlist.col {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.vertical-line {
+    border-left: 1px solid #131921;
+}
+
+.yourlist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+
+.yourlist ul li h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.youaccount {
+    width: 90%;
+    gap: 10%;
+}
+
+.returns-main {
+    border: 1px solid #131921;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.returns-main:hover {
+    border-color: white;
+}
+
+.Returns {
+    color: white;
+}
+
+.Orders {
+    color: white;
+}
+
+.Returns,
+.Orders {
+    margin: 0;
+}
+
+.Account-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+.add-to-card-section {
+    border: 1px solid #131921;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-to-card-section:hover {
+    border-color: white;
+}
+
+.add-to-cart {
+    width: 80px;
+    display: block;
+}
+
+nav {
+    background: #37475A;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.menu-box {
+    border: 1px solid #37475A;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.menu-box:hover {
+    border-color: white;
+}
+
+.menu-box h3 {
+    color: white;
+}
+
+.menu-text {
+    border: 1px solid #37475A;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.menu-text:hover {
+    border-color: white;
+}
+
+.menu-text p {
+    color: white;
+}
+
+.number-of-results {
+    width: 98vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.number-of-results p {
+    font-size: large;
+}
+
+.number-of-results p span {
+    font-weight: bold;
+    color: rgb(170, 63, 6);
+}
+
+.number-of-results select {
+    border-radius: 5px;
+    border: 1px solid #070707;
+    ;
+}
+
+.hr-line {
+    margin: 0;
+    color: rgba(46, 45, 45, 0.485);
+    margin-bottom: 2vh;
+    box-shadow: 2px 2px 3px rgba(95, 95, 95, 0.201);
+}
+
+.popular-shopping-ideas {
+    margin: 2px 0 12px 0;
+}
+
+.Keyboard {
+    margin-bottom: 5px;
+}
+
+.Keyboard:hover {
+    color: rgb(217, 86, 39);
+}
+
+.filter-col {
+    width: 15vw;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.hr-filter {
+   
+    color: rgb(116, 114, 114);
+    width: 100%;
+    margin-top:10px;
+    margin-bottom:5px;
+
+}
+
+.listpriceofcard {
+    text-decoration: line-through;
+
+}
+
+.add-to-card-btn {
+    background: yellow;
+}
+
+.product-img-col {
+    border-right: 1px solid #545556;
+
+}
+
+.product-img {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    width: 225px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.product-card {
+    border: 1px solid #6d6e6f;
+    border-radius: 10px;
+}
+
+.product-section {
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.results {
+    margin-bottom: 8px;
+}
+
+.check-each-product {
+    color: #6d6e6f;
+    margin-bottom: 5px;
+}
+.four-stars{
+width: 100px;
+margin: 0;
+padding: 0;
+}
+.product-name{
+    font-weight: 500;
+}
+.priceofproducts{
+    font-weight: 500;
+}
