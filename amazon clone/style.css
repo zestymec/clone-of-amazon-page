@@ -80,6 +80,7 @@ header {
 .header-bar {
     display: flex;
 }
+
 .delivery-to {
     display: flex;
     justify-content: center;
@@ -87,6 +88,7 @@ header {
     color: white;
     font-weight: bold;
 }
+
 .deliver-div {
     align-items: center;
 }
@@ -859,13 +861,14 @@ footer {
     color: rgba(255, 255, 255, 0.322);
     line-height: 30px;
 }
+
 .hr-line-footer {
     width: 60vw;
     margin-left: auto;
     margin-right: auto;
-    height: 2px;               
-    background-color: rgba(194, 187, 187, 0.444); 
-    border: none;             
+    height: 2px;
+    background-color: rgba(194, 187, 187, 0.444);
+    border: none;
 }
 
 .fourth-row {
@@ -883,67 +886,104 @@ footer {
 
 }
 
-.copu-right{
+.copu-right {
     color: rgba(255, 255, 255, 0.641);
     text-align: center;
     padding-bottom: 30px;
 }
-.Used{
+
+.Used {
     margin-right: 5px;
 }
-.New{
+
+.New {
     margin-right: 5px;
 }
-.conditions{
+
+.conditions {
     line-height: 25px;
 }
-.Products
-, .Brands
-, .Sellers{
+
+.Products,
+.Brands,
+.Sellers {
     line-height: 25px;
 }
-.Sellers{
+
+.Sellers {
     margin-bottom: 10px;
 }
-.hover:hover{
+
+.hover:hover {
     color: rgb(217, 86, 39);
 }
-.overlayopen{
+
+.overlayopen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.494);
+    background-color: rgba(0, 0, 0, 0.676);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
-.menu{
+
+.menu {
     position: fixed;
     display: flex;
     z-index: 10001;
     background-color: white;
     top: 0;
+    width: 20vw;
+    height: 100vh;
 }
-/* .menu-hidden{
 
-} */
-.menu-header{
+.menu-header {
     background-color: #202c3d;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 20px;
+}
 
+.menu-content {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 40px;
+    cursor: pointer;
+   
 }
-.menu-content{
-    list-style: none;
+.menu-content ul li:hover {
+    color: rgb(62, 62, 228);
+     text-decoration: underline;
 }
-.menu-header h2{
-color: white;
 
+.menu-header h2 {
+    color: white;
+    text-align: center;
 }
-.close-btn{
-    font-size: 30px;
+
+.close-btn {
+    font-size: 20px;
     cursor: pointer;
     color: rgb(4, 3, 3);
     border-radius: 50%;
+
+
+    width: 30px;
+    height: 30px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    padding: 10px;
+
 }
