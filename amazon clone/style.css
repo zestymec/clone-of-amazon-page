@@ -924,7 +924,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.676);
+    background-color: rgba(0, 0, 0, 0.842);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -939,6 +939,9 @@ footer {
     top: 0;
     width: 20vw;
     height: 100vh;
+}
+.menu-display{
+    display: none;
 }
 
 .menu-header {
