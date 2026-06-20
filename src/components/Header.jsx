@@ -47,7 +47,7 @@ function LangDropdown({ className = '' }) {
   )
 }
 
-export default function Header() {
+export default function Header({ cartCount = 0 }) {
   const [langOpen, setLangOpen] = useState(false)
   const [signinOpen, setSigninOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -57,7 +57,7 @@ export default function Header() {
   return (
     <>
       <header className="bg-amazon-dark">
-        <div className="flex justify-between py-1 px-2.5 my-auto">
+        <div className="flex flex-wrap items-center justify-between gap-y-2 px-2.5 py-1">
           <div className="flex justify-center items-center border border-amazon-dark hover:border-white">
             <img className="w-[114px] h-[46px]" src="/images/Amazon logo.png" alt="" />
           </div>
@@ -70,18 +70,18 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="flex flex-row my-auto flex-1 mx-2 max-w-none lg:max-w-[50vw]">
-            <select className="hidden md:block h-10 rounded-l-[5px] bg-[rgb(205,202,202)] border-none outline-none w-auto">
+          <div className="order-last flex w-full min-w-0 flex-1 basis-full flex-row sm:order-none sm:mx-2 sm:w-auto sm:basis-auto lg:max-w-[50vw]">
+            <select className="hidden h-10 w-auto rounded-l-[5px] border-none bg-[rgb(205,202,202)] outline-none md:block">
               {searchCategories.map((cat, i) => (
                 <option key={`${cat}-${i}`}>{cat}</option>
               ))}
             </select>
             <input
               type="text"
-              className="outline-none flex-1 md:w-[50vw] border-none focus:outline-none focus:shadow-none"
+              className="min-w-0 flex-1 border-none outline-none focus:outline-none focus:shadow-none md:w-[50vw]"
               placeholder="Search Anything"
             />
-            <button type="button" className="w-[45px] h-10 rounded-r-[5px] bg-amazon-yellow border-none">
+            <button type="button" className="h-10 w-[45px] shrink-0 rounded-r-[5px] border-none bg-amazon-yellow">
               <i className="fas fa-search" />
             </button>
           </div>
@@ -148,8 +148,13 @@ export default function Header() {
             <p className="text-white">& Orders</p>
           </div>
 
-          <div className="flex justify-center items-center border border-amazon-dark hover:border-white">
-            <img className="w-20 block" src="/images/Add to Cart.png" alt="" />
+          <div className="relative flex items-center justify-center border border-amazon-dark hover:border-white">
+            <img className="block w-16 sm:w-20" src="/images/Add to Cart.png" alt="" />
+            {cartCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-amazon-yellow px-1 text-xs font-bold text-amazon-dark">
+                {cartCount}
+              </span>
+            )}
           </div>
         </div>
       </header>

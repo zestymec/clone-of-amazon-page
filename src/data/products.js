@@ -17,7 +17,7 @@ export const products = [
       { type: 'text', value: 'More Buying Choices' },
       { type: 'text', value: 'PKR 306,625.24 (2+ Used & new offers)', suffix: true },
     ],
-    tags: ['New', 'laptop', 'amazon', 'dell'],
+    tags: ['new', 'laptop', 'amazon', 'dell'],
   },
   {
     id: 2,
@@ -54,7 +54,7 @@ export const products = [
       { type: 'text', value: 'More Buying Choices' },
       { type: 'button' },
     ],
-    tags: ['Used', 'pc', 'dadducharger', 'ryzen', 'free-dellivery'],
+    tags: ['used', 'pc', 'dadducharger', 'ryzen', 'free-dellivery'],
   },
   {
     id: 4,
@@ -73,7 +73,7 @@ export const products = [
       { type: 'text', value: 'More Buying Choices' },
       { type: 'button' },
     ],
-    tags: ['Used', 'gaminghandhandle', 'lifefourgaming', 'xbox', 'free-dellivery'],
+    tags: ['used', 'gaminghandhandle', 'lifefourgaming', 'xbox', 'free-dellivery'],
   },
 ]
 

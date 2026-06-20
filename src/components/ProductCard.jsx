@@ -1,30 +1,50 @@
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onSelect, onAddToCart }) {
+  const handleCardClick = () => {
+    onSelect?.(product)
+  }
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation()
+    onAddToCart?.(product)
+  }
+
   return (
-    <div className="flex flex-row border border-[#a3a5a5] rounded-[10px] p-2.5">
-      <div className="flex flex-col border-r border-[#a3a5a5] mr-2.5">
-        <img className={product.imageClass} src={product.image} alt="" />
+    <div
+      className="flex cursor-pointer flex-col rounded-[10px] border border-[#a3a5a5] p-2.5 transition-shadow hover:shadow-md md:flex-row"
+      onClick={handleCardClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && handleCardClick()}
+    >
+      <div className="flex flex-col items-center border-b border-[#a3a5a5] pb-2.5 md:mr-2.5 md:border-b-0 md:border-r md:pb-0">
+        <img
+          className="my-auto max-h-48 w-full max-w-[200px] object-contain md:max-w-[17vw]"
+          src={product.image}
+          alt={product.name}
+        />
       </div>
-      <div className="flex flex-col leading-[27px]">
-        <h3 className="flex flex-wrap font-normal mb-2.5">{product.name}</h3>
-        <div className="flex flex-row items-center mb-[5px]">
+      <div className="flex flex-col leading-[27px] pt-2.5 md:pt-0">
+        <h3 className="mb-2.5 flex flex-wrap font-normal">{product.name}</h3>
+        <div className="mb-[5px] flex flex-row items-center">
           <p>{product.rating}</p>
           <img className="h-[19px]" src="/images/4 stars.png" alt="" />
           <p>({product.reviewCount})</p>
         </div>
-        <h2 className="font-medium mb-[5px]">
+        <h2 className="mb-[5px] font-medium">
           <span>{product.currency}</span>
           {product.price}
         </h2>
         <p>
           List: <span className="line-through">{product.listPrice}</span>
         </p>
-        {product.blocks.map((block, i) => {
+        {product.blocks?.map((block, i) => {
           if (block.type === 'button') {
             return (
               <div key={i}>
                 <button
                   type="button"
-                  className="bg-[rgb(235,214,21)] px-5 rounded-[20px] border-none py-2.5 cursor-pointer mt-2.5 mb-2.5"
+                  className="mb-2.5 mt-2.5 cursor-pointer rounded-[20px] border-none bg-[rgb(235,214,21)] px-5 py-2.5"
+                  onClick={handleAddToCart}
                 >
                   Add to Cart
                 </button>
