@@ -7,24 +7,20 @@ import cors from 'cors';
 import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 
+const app = express(); // Pehle app initialize hogi
 
-app.use('/api/auth', authRoutes);
-
-
-const app = express();
-
-// Middleware
+// Middleware (Inhein sabse upar hona chahiye)
 app.use(cors({
-  origin: "*", // Sabhi sources se request allow karega
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
-app.use(express.json()); // JSON data read karne ke liye
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
-// Note: router.post wala code ab sirf 'productRoutes.js' mein rahega
+// Routes (Middleware ke baad)
 app.use('/api/products', productRoutes);
+app.use('/api/auth', authRoutes); // Ab ye sahi jagah hai!
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)

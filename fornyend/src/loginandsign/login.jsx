@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({ onClose }) => { // Prop receive kiya
   const [formData, setFormData] = useState({ email: '', password: '' });
 
   const handleSubmit = async (e) => {
@@ -9,36 +9,35 @@ const Login = () => {
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', formData);
       localStorage.setItem('token', res.data.token);
-      alert("Login Successful!");
-      window.location.href = '/';
+      localStorage.setItem('user', res.data.username);
+      alert("Login Successful! Welcome " + res.data.username);
+      window.location.reload();
     } catch (err) {
-      alert("Login Failed: " + (err.response?.data?.message || "Something went wrong"));
+      // Backend se jo message ayega (e.g., "Not exist"), wo alert mein dikhega
+      alert(err.response?.data?.message || "Login failed");
     }
-  };
-
-  const handleClose = () => {
-    // Yahan aap apni logic daal sakte hain (e.g., setOpen(false))
-    console.log("Close button clicked");
   };
 
   return (
     <div style={styles.container}>
-      {/* Close Button */}
-      <button style={styles.closeBtn} onClick={handleClose}>&times;</button>
+      <button style={styles.closeBtn} onClick={onClose}>&times;</button>
       
       <h2 style={{ textAlign: 'center' }}>Login</h2>
       
       <form onSubmit={handleSubmit} style={styles.form}>
+        {/* Type email se text kar diya taake validation error na aaye */}
         <input 
-          type="email" 
+          type="text" 
           placeholder="Email" 
           style={styles.input}
+          value={formData.email}
           onChange={(e) => setFormData({...formData, email: e.target.value})} 
         />
         <input 
           type="password" 
           placeholder="Password" 
           style={styles.input}
+          value={formData.password}
           onChange={(e) => setFormData({...formData, password: e.target.value})} 
         />
         <button type="submit" style={styles.button}>Login</button>
@@ -47,16 +46,12 @@ const Login = () => {
   );
 };
 
-// Simple Styles
 const styles = {
   container: {
     position: 'relative',
-    width: '300px',
-    margin: '50px auto',
+    width: '100%', // Modal ke andar fit ho jaye
     padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff', // White background
   },
   closeBtn: {
     position: 'absolute',
@@ -73,17 +68,18 @@ const styles = {
     gap: '10px',
   },
   input: {
-    padding: '8px',
+    padding: '10px',
     borderRadius: '4px',
-    border: '1px solid #ddd',
+    border: '1px solid #ccc',
+    outline: 'none'
   },
   button: {
     padding: '10px',
-    backgroundColor: '#007bff',
-    color: 'white',
-    border: 'none',
+    backgroundColor: '#f0c14b', // Amazon yellow tone
+    border: '1px solid #a88734',
     borderRadius: '4px',
     cursor: 'pointer',
+    fontWeight: 'bold'
   }
 };
 

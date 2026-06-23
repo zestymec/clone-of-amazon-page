@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const Signup = () => {
+const Signup = ({ onClose }) => { // Prop receive kiya
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
 
   const handleSubmit = async (e) => {
@@ -9,19 +9,15 @@ const Signup = () => {
     try {
       await axios.post('http://localhost:5000/api/auth/signup', formData);
       alert("Signup successful! Now login.");
+      onClose(); // Signup ke baad modal band kar dein
     } catch (err) {
-      alert("Signup failed: " + (err.response?.data?.message || "Error"));
+      alert(err.response?.data?.message || "Something went wrong");
     }
-  };
-
-  const handleClose = () => {
-    console.log("Close button clicked");
   };
 
   return (
     <div style={styles.container}>
-      {/* Close Button */}
-      <button style={styles.closeBtn} onClick={handleClose}>&times;</button>
+      <button style={styles.closeBtn} onClick={onClose}>&times;</button>
       
       <h2 style={{ textAlign: 'center' }}>Sign Up</h2>
       
@@ -30,18 +26,22 @@ const Signup = () => {
           type="text" 
           placeholder="Username" 
           style={styles.input}
+          value={formData.username}
           onChange={(e) => setFormData({...formData, username: e.target.value})} 
         />
+        {/* Email type text kar di taake validation issue na ho */}
         <input 
-          type="email" 
+          type="text" 
           placeholder="Email" 
           style={styles.input}
+          value={formData.email}
           onChange={(e) => setFormData({...formData, email: e.target.value})} 
         />
         <input 
           type="password" 
           placeholder="Password" 
           style={styles.input}
+          value={formData.password}
           onChange={(e) => setFormData({...formData, password: e.target.value})} 
         />
         <button type="submit" style={styles.button}>Sign Up</button>
@@ -50,16 +50,12 @@ const Signup = () => {
   );
 };
 
-
 const styles = {
   container: {
     position: 'relative',
-    width: '300px',
-    margin: '50px auto',
+    width: '100%',
     padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff',
   },
   closeBtn: {
     position: 'absolute',
@@ -76,17 +72,19 @@ const styles = {
     gap: '10px',
   },
   input: {
-    padding: '8px',
+    padding: '10px',
     borderRadius: '4px',
-    border: '1px solid #ddd',
+    border: '1px solid #ccc',
+    outline: 'none'
   },
   button: {
     padding: '10px',
-    backgroundColor: '#28a745', // Signup ke liye green color rakha hai
+    backgroundColor: '#28a745',
     color: 'white',
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
+    fontWeight: 'bold'
   }
 };
 
