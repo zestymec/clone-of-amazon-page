@@ -1,9 +1,11 @@
-const express = require('express');
+import express from 'express';
+import multer from 'multer';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
+import Product from '../models/Product.js';
+
 const router = express.Router();
-const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const cloudinary = require('cloudinary').v2;
-const Product = require('../models/Product');
+
 
 
 cloudinary.config({
@@ -20,10 +22,10 @@ router.post('/', upload.single('image'), async (req, res) => {
     title: req.body.title,
     price: req.body.price,
     rating: req.body.rating,
-    imageUrl: req.file.path // Yeh Cloudinary ka URL hai
+    imageUrl: req.file.path 
   });
   await newProduct.save();
   res.status(201).json(newProduct);
 });
 
-module.exports = router;
+export default router;
