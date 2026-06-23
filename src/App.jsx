@@ -17,9 +17,16 @@ export default function App() {
   const [productModalOpen, setProductModalOpen] = useState(false)
   const [detailProduct, setDetailProduct] = useState(null)
 
-  const handleAddProduct = (formData) => {
-    addProduct(formData)
-  }
+  const handleAddProduct = async (formData) => {
+    try {
+      const res = await axios.post('http://localhost:5000/api/products', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      console.log("Product added:", res.data);
+    } catch (err) {
+      console.error("Upload error:", err);
+    }
+  };
 
   const handleSelectProduct = (product) => {
     setDetailProduct(product)

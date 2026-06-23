@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const emptyForm = { title: '', price: '', imageUrl: '', rating: '' }
+const emptyForm = { title: '', price: '', image: null, rating: '' }
 
 export default function ProductModal({ open, onClose, onSubmit }) {
   const [form, setForm] = useState(emptyForm)
@@ -12,11 +12,22 @@ export default function ProductModal({ open, onClose, onSubmit }) {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!form.title || !form.price || !form.imageUrl) return
-    onSubmit(form)
-    setForm(emptyForm)
-    onClose()
+    e.preventDefault();
+
+    
+    if (!form.title || !form.price || !form.image) return;
+
+    
+    const formData = new FormData();
+    formData.append('title', form.title);
+    formData.append('price', form.price);
+    formData.append('image', form.image); 
+    formData.append('rating', form.rating);
+
+    onSubmit(formData);
+
+    setForm(emptyForm);
+    onClose();
   }
 
   return (
@@ -49,11 +60,13 @@ export default function ProductModal({ open, onClose, onSubmit }) {
             required
           />
           <input
-            name="imageUrl"
-            value={form.imageUrl}
-            onChange={handleChange}
-            placeholder="Image URL"
-            className="rounded border border-gray-300 px-3 py-2 outline-none focus:border-amazon-yellow"
+            name="image"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              setForm((prev) => ({ ...prev, image: e.target.files[0] }));
+            }}
+            className="rounded border border-gray-300 px-3 py-2"
             required
           />
           <input
