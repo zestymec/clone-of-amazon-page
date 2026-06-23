@@ -1,1 +1,0 @@
-project demo : https://clone-of-amazon-page.netlify.app/

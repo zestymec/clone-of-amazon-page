@@ -47,7 +47,7 @@ function LangDropdown({ className = '' }) {
   )
 }
 
-export default function Header({ cartCount = 0, onAddProductClick }) {
+export default function Header({ cartCount = 0, onAddProductClick, onLoginClick }) {
   const [langOpen, setLangOpen] = useState(false)
   const [signinOpen, setSigninOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -109,13 +109,20 @@ export default function Header({ cartCount = 0, onAddProductClick }) {
             </div>
             {signinOpen && (
               <div className="absolute top-full right-5 w-[30vw] bg-white p-[15px] rounded-md shadow-[0_4px_10px_rgba(0,0,0,0.2)] z-[100] flex flex-col items-center">
-                <button type="button" className="w-[60%] py-2.5 rounded-[10px] border-none cursor-pointer bg-orange-500 text-white mx-auto">
+                <button
+                  type="button"
+                  onClick={onLoginClick} // Ye line add karein
+                  className="w-[80%] py-2.5 rounded-[10px] border-none cursor-pointer bg-orange-500 text-white mx-auto"
+                >
                   Signin
                 </button>
                 <div className="flex items-center gap-[3px] mt-5">
-                  <p>
-                    New Customer?<span className="underline text-[rgb(30,87,133)]">Start here</span>
-                  </p>
+                  <span
+                    className="underline text-[rgb(30,87,133)] cursor-pointer"
+                    onClick={() => { onLoginClick(); /* Yahan props ke zariye signup state true kar dein */ }}
+                  >
+                    Start here
+                  </span>
                 </div>
                 <hr className="w-[90%]" />
                 <div className="flex w-[90%] gap-[10%]">
@@ -178,7 +185,7 @@ export default function Header({ cartCount = 0, onAddProductClick }) {
         ))}
         <div className="flex-1 flex items-center justify-end gap-4 pr-4">
 
-        
+
           <button
             type="button"
             className="text-white font-semibold hover:text-white hover:underline transition-all"
@@ -187,7 +194,7 @@ export default function Header({ cartCount = 0, onAddProductClick }) {
             Add Product
           </button>
 
-         
+
           <a
             href="https://zestymec.netlify.app/"
             target="_blank"
