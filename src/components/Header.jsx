@@ -47,7 +47,7 @@ function LangDropdown({ className = '' }) {
   )
 }
 
-export default function Header({ cartCount = 0 }) {
+export default function Header({ cartCount = 0, onAddProductClick }) {
   const [langOpen, setLangOpen] = useState(false)
   const [signinOpen, setSigninOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -176,13 +176,26 @@ export default function Header({ cartCount = 0 }) {
             <p className="text-white">{item}</p>
           </div>
         ))}
-        <div className="hidden lg:block ml-[30px]">
+        <div className="flex-1 flex items-center justify-end gap-4 pr-4">
+
+        
           <button
             type="button"
-            className="relative py-2.5 px-[22px] text-[1.1rem] font-semibold text-white bg-gradient-to-br from-[#667eea] to-[#764ba2] border-none rounded-[50px] cursor-pointer shadow-[0_8px_20px_rgba(118,75,162,0.3)] transition-all duration-300 ease-out outline-none hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(118,75,162,0.4)] hover:from-[#764ba2] hover:to-[#667eea] active:translate-y-0.5 active:shadow-[0_4px_10px_rgba(118,75,162,0.3)] focus-visible:shadow-[0_0_0_4px_rgba(69,82,141,0.5)]"
+            className="text-white font-semibold hover:text-white hover:underline transition-all"
+            onClick={onAddProductClick}
+          >
+            Add Product
+          </button>
+
+         
+          <a
+            href="https://zestymec.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-1 px-4 text-white bg-gradient-to-br from-[#667eea] to-[#764ba2] rounded-[20px] font-semibold text-sm shadow-md hover:opacity-90 transition-opacity"
           >
             Connect with me
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -190,15 +203,14 @@ export default function Header({ cartCount = 0 }) {
         <div
           className="fixed inset-0 bg-[rgba(0,0,0,0.842)] flex justify-center items-center z-[1000]"
           onClick={closeMobileMenu}
-          onKeyDown={() => {}}
+          onKeyDown={() => { }}
           role="presentation"
         />
       )}
 
       <div
-        className={`fixed flex flex-col z-[10001] bg-white top-0 w-[80vw] sm:w-[20vw] h-screen transition-transform ${
-          mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        className={`fixed flex flex-col z-[10001] bg-white top-0 w-[80vw] sm:w-[20vw] h-screen transition-transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
       >
         <div className="flex bg-[#202c3d] px-2.5 pr-5 py-2.5 gap-5">
           <button

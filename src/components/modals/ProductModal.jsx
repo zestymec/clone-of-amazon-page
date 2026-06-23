@@ -20,16 +20,14 @@ export default function ProductModal({ open, onClose, onSubmit }) {
   }
 
   return (
-    <div className=" inset-0 z-[10002] flex items-center justify-center bg-black/60 p-4" onClick={onClose} role="presentation">
+    <div className="fixed inset-0 z-[10002] flex items-center justify-center bg-black/60 p-4" onClick={onClose}>
       <div
         className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl"
         onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
       >
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold">Add Product</h2>
-          <button type="button" className="text-2xl leading-none" onClick={onClose}>×</button>
+          <button type="button" className="text-2xl" onClick={onClose}>✕</button>
         </div>
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
           <input

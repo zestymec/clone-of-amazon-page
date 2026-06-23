@@ -31,15 +31,12 @@ export default function App() {
 
   return (
     <>
-      <Header cartCount={cartCount} />
+      <Header
+        cartCount={cartCount}
+        onAddProductClick={() => setProductModalOpen(true)}
+      />
 
-      <button
-        type="button"
-        className="fixed right-3 top-3 z-[9999] rounded-full bg-amazon-yellow px-4 py-2 text-sm font-semibold shadow-md sm:right-4 sm:top-4 sm:text-base"
-        onClick={() => setProductModalOpen(true)}
-      >
-        Add Product
-      </button>
+
 
       <div className="mx-auto flex w-full max-w-[98vw] flex-col gap-2 px-2 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:px-4">
         <p className="text-sm sm:text-lg">
