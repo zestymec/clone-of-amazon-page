@@ -7,9 +7,9 @@ import cors from 'cors';
 import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 
-const app = express(); // Pehle app initialize hogi
+const app = express(); 
 
-// Middleware (Inhein sabse upar hona chahiye)
+
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -18,11 +18,11 @@ app.use(cors({
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-// Routes (Middleware ke baad)
-app.use('/api/products', productRoutes);
-app.use('/api/auth', authRoutes); // Ab ye sahi jagah hai!
 
-// Database Connection
+app.use('/api/products', productRoutes);
+app.use('/api/auth', authRoutes); 
+
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB Atlas!");

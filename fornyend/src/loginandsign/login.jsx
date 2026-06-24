@@ -21,10 +21,10 @@ const Login = ({ onClose, isSignupMode = false }) => {
         
         alert("Login Successful!");
         
-        // Modal band karein (agar hai)
+
         if (onClose) onClose();
         
-        // Pehle navigate karein, phir reload
+
         navigate('/');
         window.location.reload(); 
       } else {
