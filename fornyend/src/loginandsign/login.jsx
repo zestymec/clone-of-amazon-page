@@ -33,6 +33,7 @@ const Login = ({ onClose, isSignupMode = false }) => {
     }
   };
 
+
   return (
     <div style={styles.container}>
       {onClose && <button style={styles.closeBtn} onClick={onClose}>&times;</button>}
@@ -55,6 +56,7 @@ const Login = ({ onClose, isSignupMode = false }) => {
       </p>
     </div>
   );
+  
 };
 
 const styles = {
