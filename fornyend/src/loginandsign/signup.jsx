@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../apiConfig';
 
-const Signup = ({ onClose }) => { // Prop receive kiya
+const Signup = ({ onClose }) => {
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/signup', formData);
+      await axios.post(`${API_BASE_URL}/api/auth/signup`, formData);
       alert("Signup successful! Now login.");
-      onClose(); // Signup ke baad modal band kar dein
+      onClose();
     } catch (err) {
       alert(err.response?.data?.message || "Something went wrong");
     }
@@ -29,7 +30,6 @@ const Signup = ({ onClose }) => { // Prop receive kiya
           value={formData.username}
           onChange={(e) => setFormData({...formData, username: e.target.value})} 
         />
-        {/* Email type text kar di taake validation issue na ho */}
         <input 
           type="text" 
           placeholder="Email" 

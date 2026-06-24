@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../apiConfig';
 
 const Login = ({ onClose, isSignupMode = false }) => {
   const [isSignup, setIsSignup] = useState(isSignupMode);
@@ -10,7 +11,7 @@ const Login = ({ onClose, isSignupMode = false }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = isSignup ? 'http://localhost:5000/api/auth/signup' : 'http://localhost:5000/api/auth/login';
+    const endpoint = `${API_BASE_URL}/api/auth/${isSignup ? 'signup' : 'login'}`;
     
     try {
       const res = await axios.post(endpoint, formData);
@@ -20,11 +21,7 @@ const Login = ({ onClose, isSignupMode = false }) => {
         localStorage.setItem('user', JSON.stringify({ name: res.data.username }));
         
         alert("Login Successful!");
-        
-
         if (onClose) onClose();
-        
-
         navigate('/');
         window.location.reload(); 
       } else {
