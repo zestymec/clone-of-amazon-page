@@ -185,7 +185,17 @@ export default function Header({ cartCount = 0, onAddProductClick, onLoginClick 
         ))}
         <div className="flex-1 flex items-center justify-end gap-4 pr-4">
 
-
+          <button
+            type="button"
+            className="text-white font-semibold hover:text-white hover:underline transition-all"
+            onClick={() => {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              window.location.reload();
+            }}
+          >
+            Log out
+          </button>
           <button
             type="button"
             className="text-white font-semibold hover:text-white hover:underline transition-all"

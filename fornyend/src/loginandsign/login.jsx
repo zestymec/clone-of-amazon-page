@@ -1,86 +1,74 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ onClose }) => { // Prop receive kiya
-  const [formData, setFormData] = useState({ email: '', password: '' });
+const Login = ({ onClose, isSignupMode = false }) => {
+  const [isSignup, setIsSignup] = useState(isSignupMode);
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const endpoint = isSignup ? 'http://localhost:5000/api/auth/signup' : 'http://localhost:5000/api/auth/login';
+    
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', res.data.username);
-      alert("Login Successful! Welcome " + res.data.username);
-      window.location.reload();
+      const res = await axios.post(endpoint, formData);
+      
+      if (!isSignup) {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user', JSON.stringify({ name: res.data.username }));
+        
+        alert("Login Successful!");
+        
+        // Modal band karein (agar hai)
+        if (onClose) onClose();
+        
+        // Pehle navigate karein, phir reload
+        navigate('/');
+        window.location.reload(); 
+      } else {
+        alert("Signup Successful! Please login.");
+        setIsSignup(false);
+      }
     } catch (err) {
-      // Backend se jo message ayega (e.g., "Not exist"), wo alert mein dikhega
-      alert(err.response?.data?.message || "Login failed");
+      alert(err.response?.data?.message || "Operation failed");
     }
   };
 
   return (
     <div style={styles.container}>
-      <button style={styles.closeBtn} onClick={onClose}>&times;</button>
-      
-      <h2 style={{ textAlign: 'center' }}>Login</h2>
-      
+      {onClose && <button style={styles.closeBtn} onClick={onClose}>&times;</button>}
+      <h2 style={{ textAlign: 'center' }}>{isSignup ? "Sign Up" : "Login"}</h2>
       <form onSubmit={handleSubmit} style={styles.form}>
-        {/* Type email se text kar diya taake validation error na aaye */}
-        <input 
-          type="text" 
-          placeholder="Email" 
-          style={styles.input}
-          value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})} 
-        />
-        <input 
-          type="password" 
-          placeholder="Password" 
-          style={styles.input}
-          value={formData.password}
-          onChange={(e) => setFormData({...formData, password: e.target.value})} 
-        />
-        <button type="submit" style={styles.button}>Login</button>
+        {isSignup && (
+          <input type="text" placeholder="Username" style={styles.input} value={formData.username} onChange={(e) => setFormData({ ...formData, username: e.target.value })} required />
+        )}
+        <input type="text" placeholder="Email" style={styles.input} value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
+        <div style={styles.passwordContainer}>
+          <input type={showPassword ? "text" : "password"} placeholder="Password" style={styles.input} value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required />
+          <button type="button" style={styles.showBtn} onClick={() => setShowPassword(!showPassword)}>
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
+        <button type="submit" style={styles.button}>{isSignup ? "Sign Up" : "Login"}</button>
       </form>
+      <p style={styles.toggleText} onClick={() => setIsSignup(!isSignup)}>
+        {isSignup ? "Already have an account? Login" : "New Customer? Sign up"}
+      </p>
     </div>
   );
 };
 
 const styles = {
-  container: {
-    position: 'relative',
-    width: '100%', // Modal ke andar fit ho jaye
-    padding: '20px',
-    backgroundColor: '#fff', // White background
-  },
-  closeBtn: {
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
-    background: 'transparent',
-    border: 'none',
-    fontSize: '20px',
-    cursor: 'pointer',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-  },
-  input: {
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-    outline: 'none'
-  },
-  button: {
-    padding: '10px',
-    backgroundColor: '#f0c14b', // Amazon yellow tone
-    border: '1px solid #a88734',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontWeight: 'bold'
-  }
+  container: { position: 'relative', width: '100%', padding: '20px', backgroundColor: '#fff' },
+  closeBtn: { position: 'absolute', top: '10px', right: '10px', background: 'transparent', border: 'none', fontSize: '20px', cursor: 'pointer' },
+  form: { display: 'flex', flexDirection: 'column', gap: '10px' },
+  input: { padding: '10px', borderRadius: '4px', border: '1px solid #ccc', outline: 'none', flex: 1 },
+  passwordContainer: { display: 'flex', gap: '5px' },
+  showBtn: { padding: '5px 10px', cursor: 'pointer', backgroundColor: '#eee', border: 'none', borderRadius: '4px' },
+  button: { padding: '10px', backgroundColor: '#f0c14b', border: '1px solid #a88734', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' },
+  toggleText: { textAlign: 'center', cursor: 'pointer', color: 'blue', fontSize: '14px', marginTop: '10px', textDecoration: 'underline' }
 };
 
 export default Login;

@@ -8,6 +8,7 @@ import ProductModal from '@/components/modals/ProductModal'
 import DetailModal from '@/components/modals/DetailModal'
 import Login from './loginandsign/login'
 import Signup from './loginandsign/signup'
+import ProtectedRoute from './components/ProtectedRoute'
 import { useCart } from '@/hooks/useCart'
 import { useProducts } from '@/hooks/useProducts'
 import { products as initialProducts, relatedSearches, footerColumns, sortOptions } from './data/products'
@@ -20,7 +21,6 @@ export default function App() {
   const [productModalOpen, setProductModalOpen] = useState(false)
   const [detailProduct, setDetailProduct] = useState(null)
   
-  // Auth Modal States
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
 
@@ -47,25 +47,28 @@ export default function App() {
       />
 
       <Routes>
+        <Route path="/login" element={<Login />} />
+        
         <Route path="/" element={
-          <>
-            <div className="mx-auto flex w-full max-w-[98vw] flex-col gap-2 px-2 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:px-4">
-              <p className="text-sm sm:text-lg">Results for <span className="font-bold">"gaming"</span></p>
-            </div>
-            
-            <div className="flex flex-col lg:flex-row">
-              <SidebarFilters activeFilters={activeFilters} onToggleFilter={toggleFilter} onClearFilters={clearFilters} />
-              <div className="flex min-w-0 flex-1 flex-col px-2 sm:px-4 lg:px-0">
-                {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} onSelect={setDetailProduct} onAddToCart={addToCart} />
-                ))}
+          <ProtectedRoute>
+            <>
+              <div className="mx-auto flex w-full max-w-[98vw] flex-col gap-2 px-2 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:px-4">
+                <p className="text-sm sm:text-lg">Results for <span className="font-bold">"gaming"</span></p>
               </div>
-            </div>
-          </>
+              
+              <div className="flex flex-col lg:flex-row">
+                <SidebarFilters activeFilters={activeFilters} onToggleFilter={toggleFilter} onClearFilters={clearFilters} />
+                <div className="flex min-w-0 flex-1 flex-col px-2 sm:px-4 lg:px-0">
+                  {filteredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} onSelect={setDetailProduct} onAddToCart={addToCart} />
+                  ))}
+                </div>
+              </div>
+            </>
+          </ProtectedRoute>
         } />
       </Routes>
 
-      {/* Auth Modal */}
       {authModalOpen && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white p-6 rounded-lg w-[400px] shadow-xl">
